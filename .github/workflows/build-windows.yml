@@ -29,16 +29,17 @@ jobs:
         with:
           path: ${{github.workspace}}\vcpkg\installed
           key: vcpkg-deps-${{hashFiles('${{ env.src_dir }}\src\vcpkg_response_file.txt')}}
-      - name: Install vcpkg dependencies
-        run: ${{github.workspace}}\vcpkg\vcpkg.exe install @${{ env.src_dir }}\src\vcpkg_response_file.txt
-
+      
       - name: Checkout MoveTK
         uses: actions/checkout@v3
         with:
             repository: movetk/movetk
             submodules: recursive
             path: movetk   
-     
+      
+      - name: Install vcpkg dependencies
+        run: ${{github.workspace}}\vcpkg\vcpkg.exe install @${{ env.src_dir }}\src\vcpkg_response_file.txt
+
       - name: Install Ninja generator
         uses: seanmiddleditch/gha-setup-ninja@master
      
