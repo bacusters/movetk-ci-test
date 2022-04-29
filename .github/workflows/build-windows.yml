@@ -11,6 +11,7 @@ jobs:
       build_dir: ${{github.workspace}}\movetk-build
       src_dir: ${{github.workspace}}\movetk
       vcpkg_dir: ${{github.workspace}}\vcpkg
+      VCPKG_DEFAULT_TRIPLET: x64-windows
 
     steps:
       - name: Checkout vcpkg
@@ -29,7 +30,7 @@ jobs:
           path: ${{github.workspace}}\vcpkg\installed
           key: vcpkg-deps-${{hashFiles('${{ env.src_dir }}\src\vcpkg_response_file.txt')}}
       - name: Install vcpkg dependencies
-        run: ${{github.workspace}}\vcpkg\vcpkg.exe install 
+        run: ${{github.workspace}}\vcpkg\vcpkg.exe install @${{ env.src_dir }}\src\vcpkg_response_file.txt
 
       - name: Checkout MoveTK
         uses: actions/checkout@v3
