@@ -38,7 +38,7 @@ jobs:
             path: movetk   
       
       - name: Install vcpkg dependencies
-        run: ${{github.workspace}}\vcpkg\vcpkg.exe install @${{ env.src_dir }}\src\vcpkg_response_file.txt
+        run: ${{github.workspace}}\vcpkg\vcpkg.exe install @${{ env.src_dir }}\src\vcpkg_response_file.txt --clean-after-build
 
       - name: Install Ninja generator
         uses: seanmiddleditch/gha-setup-ninja@master
